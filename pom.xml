@@ -68,6 +68,74 @@
           </execution>
         </executions>
       </plugin>
+      <!-- https://mvnrepository.com/artifact/com.diffplug.spotless/spotless-maven-plugin -->
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>2.37.0</version>
+        <configuration>
+          <formats>
+            <format>
+              <endWithNewline/>
+              <includes>
+                <include>Dockerfile</include>
+              </includes>
+              <indent>
+                <spaces>true</spaces>
+                <spacesPerTab>8</spacesPerTab>
+              </indent>
+              <trimTrailingWhitespace/>
+            </format>
+            <format>
+              <endWithNewline/>
+              <includes>
+                <include>*.md</include>
+                <include>*.yml</include>
+                <include>*.config</include>
+                <include>*.properties</include>
+                <include>.gitignore</include>
+              </includes>
+              <indent>
+                <spaces>true</spaces>
+                <spacesPerTab>2</spacesPerTab>
+              </indent>
+              <trimTrailingWhitespace/>
+            </format>
+          </formats>
+          <java>
+            <excludes>
+              <exclude>**/generated-sources/**</exclude>
+            </excludes>
+            <toggleOffOn/>
+            <removeUnusedImports/>
+            <importOrder/>
+            <trimTrailingWhitespace/>
+            <palantirJavaFormat/>
+            <endWithNewline/>
+            <formatAnnotations/>
+            <replaceRegex>
+              <name>star imports</name>
+              <searchRegex>import\s+[^\*\s]+\*;(\r\n|\r|\n)</searchRegex>
+              <replacement>$1</replacement>
+            </replaceRegex>
+            <indent>
+              <tabs>true</tabs>
+              <spacesPerTab>4</spacesPerTab>
+            </indent>
+            <indent>
+              <spaces>true</spaces>
+              <spacesPerTab>2</spacesPerTab>
+            </indent>
+          </java>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
