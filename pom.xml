@@ -8,6 +8,18 @@
   <artifactId>baseline-java</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
+  <packaging>jar</packaging>
+
+  <name>Java Baseline</name>
+  <description>Baseline project for Java 11 LTS with Maven</description>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
