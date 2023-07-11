@@ -13,7 +13,11 @@
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+    <assertj.version>3.24.2</assertj.version>
+    <checkstyle.version>3.3.0</checkstyle.version>
     <junit.version>5.10.0-RC1</junit.version>
+    <pmd.version>3.21.0</pmd.version>
+    <spotless.version>2.37.0</spotless.version>
   </properties>
 
   <dependencies>
@@ -21,7 +25,7 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.24.2</version>
+      <version>${assertj.version}</version>
       <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
@@ -53,7 +57,7 @@
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
-        <version>2.37.0</version>
+        <version>${spotless.version}</version>
         <configuration>
           <formats>
             <format>
@@ -121,7 +125,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>${checkstyle.version}</version>
         <configuration>
           <configLocation>config/checkstyle.xml</configLocation>
           <consoleOutput>false</consoleOutput>
@@ -140,7 +144,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.21.0</version>
+        <version>${pmd.version}</version>
         <configuration>
           <excludeRoots>
             <excludeRoot>**/generated-sources/**</excludeRoot>
