@@ -166,6 +166,7 @@
         </configuration>
         <executions>
           <execution>
+            <id>checkstyle-verify</id>
             <goals>
               <goal>check</goal>
             </goals>
@@ -207,6 +208,7 @@
         </configuration>
         <executions>
           <execution>
+            <id>pmd-check</id>
             <goals>
               <goal>check</goal>
               <goal>cpd-check</goal>
@@ -289,6 +291,7 @@
             </goals>
           </execution>
           <execution>
+            <id>jacoco-check</id>
             <goals>
               <goal>check</goal>
             </goals>
@@ -297,5 +300,60 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>no-checks</id>
+      <build>
+        <plugins>
+          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>checkstyle-verify</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-pmd-plugin -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>pmd-check</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jacoco-prepare-agent</id>
+                <phase>none</phase>
+              </execution>
+              <execution>
+                <id>jacoco-prepare-agent-integration</id>
+                <phase>none</phase>
+              </execution>
+              <execution>
+                <id>jacoco-merge</id>
+                <phase>none</phase>
+              </execution>
+              <execution>
+                <id>jacoco-check</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
