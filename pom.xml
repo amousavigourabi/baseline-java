@@ -136,6 +136,27 @@
           </execution>
         </executions>
       </plugin>
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-pmd-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.21.0</version>
+        <configuration>
+          <excludeRoots>
+            <excludeRoot>**/generated-sources/**</excludeRoot>
+          </excludeRoots>
+          <inputEncoding>utf-8</inputEncoding>
+          <minimumTokens>100</minimumTokens>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+              <goal>cpd-check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
