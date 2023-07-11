@@ -8,6 +8,7 @@ public class MainTest {
 
   @Test
   void wrappedOneEqualsOne() {
+    Main.main(null);
     assertThat(Integer.valueOf(1)).isEqualTo(1);
   }
 }
