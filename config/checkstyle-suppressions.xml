@@ -29,4 +29,5 @@
 
   <!-- Application classes should not be treated as utils classes. -->
   <suppress files="[/\\].*Application.java$" checks="HideUtilityClassConstructorCheck" />
+  <suppress files="[/\\].*Main.java$" checks="HideUtilityClassConstructorCheck" />
 </suppressions>
