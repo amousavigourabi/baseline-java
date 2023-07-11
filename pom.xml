@@ -8,12 +8,28 @@
   <artifactId>baseline-java</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
+  <packaging>jar</packaging>
+
+  <name>Java Baseline</name>
+  <description>Baseline project for Java 11 LTS with Maven</description>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+    <assertj.version>3.24.2</assertj.version>
+    <checkstyle.version>3.3.0</checkstyle.version>
     <junit.version>5.10.0-RC1</junit.version>
+    <pmd.version>3.21.0</pmd.version>
+    <spotless.version>2.37.0</spotless.version>
   </properties>
 
   <dependencies>
@@ -21,7 +37,7 @@
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
-      <version>3.24.2</version>
+      <version>${assertj.version}</version>
       <scope>test</scope>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
@@ -46,5 +62,118 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <!-- https://mvnrepository.com/artifact/com.diffplug.spotless/spotless-maven-plugin -->
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>${spotless.version}</version>
+        <configuration>
+          <formats>
+            <format>
+              <endWithNewline/>
+              <includes>
+                <include>Dockerfile</include>
+              </includes>
+              <indent>
+                <spaces>true</spaces>
+                <spacesPerTab>8</spacesPerTab>
+              </indent>
+              <trimTrailingWhitespace/>
+            </format>
+            <format>
+              <endWithNewline/>
+              <includes>
+                <include>*.md</include>
+                <include>*.yml</include>
+                <include>*.config</include>
+                <include>*.properties</include>
+                <include>.gitignore</include>
+              </includes>
+              <indent>
+                <spaces>true</spaces>
+                <spacesPerTab>2</spacesPerTab>
+              </indent>
+              <trimTrailingWhitespace/>
+            </format>
+          </formats>
+          <java>
+            <excludes>
+              <exclude>**/generated-sources/**</exclude>
+            </excludes>
+            <toggleOffOn/>
+            <removeUnusedImports/>
+            <importOrder/>
+            <trimTrailingWhitespace/>
+            <palantirJavaFormat/>
+            <endWithNewline/>
+            <formatAnnotations/>
+            <replaceRegex>
+              <name>star imports</name>
+              <searchRegex>import\s+[^\*\s]+\*;(\r\n|\r|\n)</searchRegex>
+              <replacement>$1</replacement>
+            </replaceRegex>
+            <indent>
+              <tabs>true</tabs>
+              <spacesPerTab>4</spacesPerTab>
+            </indent>
+            <indent>
+              <spaces>true</spaces>
+              <spacesPerTab>2</spacesPerTab>
+            </indent>
+          </java>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${checkstyle.version}</version>
+        <configuration>
+          <configLocation>config/checkstyle.xml</configLocation>
+          <consoleOutput>false</consoleOutput>
+          <failsOnError>true</failsOnError>
+          <suppressionsLocation>config/checkstyle-suppressions.xml</suppressionsLocation>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-pmd-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>${pmd.version}</version>
+        <configuration>
+          <excludeRoots>
+            <excludeRoot>**/generated-sources/**</excludeRoot>
+          </excludeRoots>
+          <inputEncoding>utf-8</inputEncoding>
+          <minimumTokens>100</minimumTokens>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+              <goal>cpd-check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
