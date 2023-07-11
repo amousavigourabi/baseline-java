@@ -28,6 +28,7 @@
     <assertj.version>3.24.2</assertj.version>
     <checkstyle.version>3.3.0</checkstyle.version>
     <failsafe.version>3.1.2</failsafe.version>
+    <jacoco.version>0.8.10</jacoco.version>
     <junit.version>5.10.0-RC1</junit.version>
     <lombok.version>1.18.28</lombok.version>
     <pmd.version>3.21.0</pmd.version>
@@ -228,6 +229,71 @@
           </includes>
           <rerunFailingTestsCount>3</rerunFailingTestsCount>
         </configuration>
+      </plugin>
+      <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <configuration>
+          <fileSets>
+            <fileSet>
+              <directory>${project.build.directory}</directory>
+              <includes>
+                <include>*.exec</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+          <rules>
+            <rule>
+              <element>BUNDLE</element>
+              <limits>
+                <limit>
+                  <counter>BRANCH</counter>
+                  <value>COVEREDRATIO</value>
+                  <minimum>0.80</minimum>
+                </limit>
+                <limit>
+                  <counter>LINE</counter>
+                  <value>COVEREDRATIO</value>
+                  <minimum>0.80</minimum>
+                </limit>
+              </limits>
+            </rule>
+          </rules>
+        </configuration>
+        <executions>
+          <execution>
+            <id>jacoco-prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+              <propertyName>surefireArgLine</propertyName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>jacoco-prepare-agent-integration</id>
+            <goals>
+              <goal>prepare-agent-integration</goal>
+            </goals>
+            <configuration>
+              <propertyName>failsafeArgLine</propertyName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>jacoco-merge</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>merge</goal>
+            </goals>
+          </execution>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
