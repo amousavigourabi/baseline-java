@@ -11,7 +11,7 @@
   <packaging>jar</packaging>
 
   <name>Java Baseline</name>
-  <description>Baseline project for Java 11 LTS with Maven</description>
+  <description>Baseline project for Java 25 LTS with Maven</description>
 
   <licenses>
     <license>
@@ -21,7 +21,7 @@
   </licenses>
 
   <properties>
-    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.source>25</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -30,9 +30,9 @@
     <failsafe.version>3.1.2</failsafe.version>
     <jacoco.version>0.8.10</jacoco.version>
     <junit.version>5.10.0-RC1</junit.version>
-    <lombok.version>1.18.28</lombok.version>
+    <lombok.version>1.18.40</lombok.version>
     <pmd.version>3.21.0</pmd.version>
-    <slf4j.version>2.0.7</slf4j.version>
+    <slf4j.version>2.0.17</slf4j.version>
     <spotless.version>2.37.0</spotless.version>
     <surefire.version>3.1.2</surefire.version>
   </properties>
