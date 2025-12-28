@@ -11,12 +11,11 @@
   <packaging>jar</packaging>
 
   <name>Java Baseline</name>
-  <description>Baseline project for Java 11 LTS with Maven</description>
+  <description>Baseline project for Java 25 LTS with Maven</description>
 
   <licenses>
     <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <name>MIT License</name>
     </license>
   </licenses>
 
