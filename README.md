@@ -1,2 +1,2 @@
 # Baseline Java
-Baseline repository for projects using Java 11 LTS with Maven
+Baseline repository for projects using Java 25 LTS with Maven
