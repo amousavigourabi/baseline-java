@@ -19,6 +19,6 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: 'corretto'
-          cache: maven
+          cache: gradle
       - name: Verify
-        run: mvn -B verify --file pom.xml
+        run: gradle check
